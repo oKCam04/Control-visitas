@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+
+{% block contenido %}
+    <div class="w-25" style="margin: 0 auto">
+        <form id="frmUsuario" class="was-validated">
+            <br><br>
+            <div>
+                <h3 class="text-center fw-bold bg-dark text-white" style="font-size:2lvw">
+                    REGISTRAR USUARIO
+                </h3>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold" for="txtNombre">Nombre completo:</label>
+                <input type="text" name="txtNombre" id="txtNombre" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold" for="txtEmail">Email:</label>
+                <input type="email" name="txtEmail" id="txtEmail" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold" for="txtOficina">Oficina:</label>
+                <input type="text" name="txtOficina" id="txtOficina" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold" for="cbTipoUsuario">Tipo de usuario:</label>
+                <select name="cbTipoUsuario" id="cbTipoUsuario" class="form-select" required>
+                    <option value="" selected>Seleccione</option>
+                    <option value="Asistente">Asistente</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold" for="txtUsuario">Usuario:</label>
+                <input type="text" name="txtUsuario" id="txtUsuario" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="fw-bold" for="txtContrasena">Contraseña:</label>
+                <input type="password" name="txtContrasena" id="txtContrasena" class="form-control" required>
+            </div>
+
+            <div>
+                <button type="button" class="btn btn-dark" >Registrar</button>
+                <a href="/"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

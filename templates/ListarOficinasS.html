@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block menu %}
+    {% include "encabezadoAsistente.html" %}
+{% endblock %}
+
+{% block contenido %}
+<script src="../static/js/app.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+
+<div class="w-75" style="margin: 0 auto">
+    <h3 class="text-center fw-bold">LISTADO DE OFICINAS</h3>
+    <div>
+        <a href="/AgregarOficinaAsistente/"><button class="btn btn-secondary">Agregar Oficina</button></a>
+    </div>
+
+    <div>
+        <table id="tbOficinas" class="table table-bordered mt-2">
+            <thead class="table-secondary text-center">
+                <tr>
+                    <th>Nombre de la Oficinas</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="datosOficinas">
+                {% for o in oficina %}
+                <tr id="oficina-{{ o.id }}">
+                    <td>{{ o.nombreOficina }}</td>
+                    <td class="text-center" style="font-size:3vh">
+                        <i class="fa fa-trash text-danger" title="Eliminar" onclick="deleteOficina('{{ o.id }}')"></i>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+
+<script>
+    let table = new DataTable('#tbOficinas');
+</script>
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piepagina.html" %}
+{% endblock %}

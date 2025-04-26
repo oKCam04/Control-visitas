@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block menu %}
+    {% include "encabezadoAsistente.html" %}
+{% endblock %}
+
+{% block contenido %}
+<script src="../static/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="w-50" style="margin: 0 auto">
+    <h3 class="text-center fw-bold">AGREGAR SERVIDOR</h3>
+    <form id="formAgregarServidor" method="POST">
+        
+        <div class="mb-3">
+            <label for="txtNombreCompleto" class="form-label">Nombre Completo:</label>
+            <input type="text" class="form-control" id="txtNombreCompleto" name="nombreCompleto" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="txtCorreo" class="form-label">Correo:</label>
+            <input type="email" class="form-control" id="txtCorreo" name="correo" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="cbOficina" class="form-label">Oficina:</label>
+            <select class="form-select" id="cbOficina" name="oficina" required>
+                <option value="">Seleccione una oficina</option>
+                {% for o in Oficinas %}
+                    <option value="{{ o.id }}">{{ o.nombreOficina }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-success" onclick="agregarServidor()">Guardar Servidor</button>
+            <a href="/ListarServidores/" class="btn btn-secondary">Cancelar</a>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piepagina.html" %}
+{% endblock %}

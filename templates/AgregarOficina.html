@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block menu %}
+    {% include "encabezadoAsistente.html" %}
+{% endblock %}
+
+{% block contenido %}
+<script src="../static/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="w-50" style="margin: 0 auto">
+    <h3 class="text-center fw-bold">AGREGAR OFICINA</h3>
+    <form id="formAgregarOficina" method="POST">
+        
+        <div class="mb-3">
+            <label for="txtNombreOficina" class="form-label">Nombre de la Oficina:</label>
+            <input type="text" class="form-control" id="txtNombreOficina" name="nombreOficina" required>
+        </div>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-success" onclick="agregarOficina()">Guardar Oficina</button>
+            <a href="/listarOficina/" class="btn btn-secondary">Cancelar</a>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piepagina.html" %}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+
+{% block menu %}
+    {% include "encabezadoAdmin.html" %}
+{% endblock %}
+
+{% block contenido %}
+<script src="../static/js/app.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+
+<div class="w-75" style="margin: 0 auto">
+    <h3 class="text-center fw-bold">LISTADO DE ENTRADAS</h3>
+    <div>
+        <table id="tbEntradas" class="table table-bordered mt-2">
+            <thead class="table-secondary text-center">
+                <tr>
+                    <th>Nombre del Visitante</th>
+                    <th>Fecha</th>
+                    <th>Oficina</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="datosEntradas">
+                {% for e in entradas %}
+                <tr>
+                    <td>{{ e.NombreVisitante }}</td>
+                    <td>{{ e.fecha }}</td>
+                    <td>
+                        {% for o in oficina %}
+                            {% if o.id == e.oficina.id %}
+                                {{ o.nombreOficina }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ e.Estado }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    let table = new DataTable('#tbEntradas');
+</script>
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piepagina.html" %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+{% block menu %}
+    {% include "encabezadoAsistente.html" %}
+{% endblock %}
+
+{% block contenido %}
+
+<h3 class="text-center fw-bold">Funcionamiento Aplicación</h3>
+<p>
+    Aplicación desarrollada en Python con Flask y como motor de bases de Datos MongoDB.
+    Esta Aplicación es para controlar las personas que estan dentro del sena, servidores y visitantes.
+</p>
+<p class="fw-bold">Funcionalidades:</p>
+<ul>
+    <li>Listar visitante</li>
+    <li>Agregar servidor</li>
+    <li>Agregar Oficinas</li>
+    <li>listar servidores</li>
+   
+</ul>
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piepagina.html" %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+
+{% block menu %}
+    {% include "encabezadoAsistente.html" %}
+{% endblock %}
+
+{% block contenido %}
+<script src="../static/js/app.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+
+<div class="w-75" style="margin: 0 auto">
+    <h3 class="text-center fw-bold">LISTADO DE SERVIDORES</h3>
+    <div>
+        <table id="tbServidores" class="table table-bordered mt-2">
+            <thead class="table-secondary text-center">
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Correo</th>
+                    <th>Oficina</th>
+                </tr>
+            </thead>
+            <tbody id="datosServidores">
+                {% for s in Servidores %}
+                <tr>
+                    <td>{{ s.nombreCompleto }}</td>
+                    <td>{{ s.correo }}</td>
+                    <td>
+                        {% for o in oficinas %}
+                            {% if o.id == s.oficina.id %}
+                                {{ o.nombreOficina }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    let table = new DataTable('#tbServidores');
+</script>
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piepagina.html" %}
+{% endblock %}

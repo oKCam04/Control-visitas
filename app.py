@@ -21,11 +21,12 @@ print("Base de datos usada:", dbname)
 
 db=MongoEngine(app)
 
+from routes.Entradas import *
+from routes.Usuario import *
+from routes.oficina import *
+from routes.RegistrarVisitante import *
 
 
 if __name__ == '__main__':
-    from routes.Entradas import *
-    from routes.Usuario import *
-    from routes.oficina import *
-    from routes.RegistrarVisitante import *
+    
     app.run(port=3000, host="0.0.0.0",debug=True)

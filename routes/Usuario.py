@@ -92,7 +92,7 @@ def registrarU():
         oficina=Oficina.objects()
     except Exception as error:
         mensaje=str(error)
-    return render_template("registrarUsuario.html", oficina=oficina)
+    return render_template("RegistrarUsuario.html", oficina=oficina)
 
 
 

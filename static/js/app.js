@@ -199,12 +199,12 @@ function agregarOficina() {
 }
 
 function agregarServidor() {
-    // Obtener los valores de los campos
+    
     const nombreCompleto = document.getElementById("txtNombreCompleto").value;
     const correo = document.getElementById("txtCorreo").value;
     const oficinaId = document.getElementById("cbOficina").value;
 
-    // Validar si todos los campos son completados
+  
     if (!nombreCompleto || !correo || !oficinaId) {
         Swal.fire("Error", "Todos los campos son obligatorios", "error");
         return;
@@ -213,10 +213,10 @@ function agregarServidor() {
     const servidor = {
         nombreCompleto: nombreCompleto,
         correo: correo,
-        oficina: oficinaId  // Enviamos el ID de la oficina
+        oficina: oficinaId  
     };
 
-    // Enviar los datos al servidor
+   
     fetch("/RegistrarServidor/", {
         method: "POST",
         headers: {
@@ -227,12 +227,12 @@ function agregarServidor() {
     .then(response => response.json())
     .then(resultado => {
         if (resultado.estado) {
-            // Mostrar éxito y redirigir a la lista de servidores
+            
             Swal.fire("Éxito", resultado.mensaje, "success").then(() => {
-                window.location.href = "/listarServidores/";
+                window.location.href = "/ListarServidores/";
             });
         } else {
-            // Mostrar mensaje de advertencia
+           
             Swal.fire("Error", resultado.mensaje, "warning");
         }
     })

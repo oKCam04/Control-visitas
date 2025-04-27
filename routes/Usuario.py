@@ -127,11 +127,11 @@ def registrar_usuario():
 
         flash("Usuario registrado correctamente. Por favor, inicia sesión.", "success")
 
-        return render_template('registrarUsuario.html')  
+        return render_template('RegistrarUsuario.html')  
 
     except Exception as error:
         flash(f"Error al registrar el usuario: {str(error)}", "error")
-    return render_template('registrarUsuario.html')
+    return render_template('RegistrarUsuario.html')
        
 
 

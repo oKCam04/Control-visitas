@@ -46,24 +46,31 @@ def addServidor():
 
 @app.route("/ListarServidores/", methods=["GET"])
 def ListarServidores():
-    try:
-        mensaje = None
-        servidores = RegistrarVisitante.objects() 
-        oficinas=Oficina.objects() 
-    except Exception as error:
-        mensaje = str(error)
-
-    return render_template("ListarServidores.html", Servidores=servidores, oficinas=oficinas)
+    if "user" in session:
+        try:
+            mensaje = None
+            servidores = RegistrarVisitante.objects() 
+            oficinas = Oficina.objects() 
+        except Exception as error:
+            mensaje = str(error)
+        return render_template("ListarServidores.html", Servidores=servidores, oficinas=oficinas)
+    else:
+        mensaje = "Debe ingresar primero"
+        return render_template("iniciarSesion.html", mensaje=mensaje)
 
 @app.route("/RegistrarVisitante/", methods=["GET"])
 def RegistrarServidor():
-    try:
-        mensaje = None
-        visitantes = RegistrarVisitante.objects()
-        oficinas = Oficina.objects()
-    except Exception as error:
-        mensaje = str(error)
+    if "user" in session:
+        try:
+            mensaje = None
+            visitantes = RegistrarVisitante.objects()
+            oficinas = Oficina.objects()
+        except Exception as error:
+            mensaje = str(error)
+        return render_template("AgregarServidor.html", Visitantes=visitantes, Oficinas=oficinas)
+    else:
+        mensaje = "Debe ingresar primero"
+        return render_template("iniciarSesion.html", mensaje=mensaje)
 
-    return render_template("AgregarServidor.html", Visitantes=visitantes, Oficinas=oficinas)
 
     

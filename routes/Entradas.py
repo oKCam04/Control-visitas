@@ -96,49 +96,69 @@ def deleteEntradas():
 
 # contenido admin
 
-@app.route("/Entrada/", methods=['GET'])
+
+@app.route("/Entrada/", methods=["GET"])
 def getEntradas():
-    try:
-        mensaje=None 
-        entradas=Entradas.objects()
-        oficina=Oficina.objects()
-    except Exception as error:
-        mensaje=str(error)
-    return render_template("ListarEntradasA.html", mensaje=mensaje, entradas=entradas, oficina=oficina)
+    if "user" in session:
+        try:
+            mensaje = None
+            entradas = Entradas.objects()
+            oficina = Oficina.objects()
+        except Exception as error:
+            mensaje = str(error)
+        return render_template("ListarEntradasA.html", mensaje=mensaje, entradas=entradas, oficina=oficina)
+    else:
+        mensaje = "Debe ingresar primero"
+        return render_template("iniciarSesion.html", mensaje=mensaje)
 
-@app.route("/HomeAdmin/",methods=["GET"])
+@app.route("/HomeAdmin/", methods=["GET"])
 def homeAdmin():
-    return render_template("contenidoAdmin.html")
+    if "user" in session:
+        return render_template("contenidoAdmin.html")
+    else:
+        mensaje = "Debe ingresar primero"
+        return render_template("iniciarSesion.html", mensaje=mensaje)
 
-# contenido asistente
-
-@app.route("/EntradaAsistente/", methods=['GET'])
+#contenido asistente
+@app.route("/EntradaAsistente/", methods=["GET"])
 def getEntradasAsistente():
-    try:
-        mensaje=None 
-        entradas=Entradas.objects()
-        oficina=Oficina.objects()
-    except Exception as error:
-        mensaje=str(error)
-    return render_template("ListarEntradasS.html", mensaje=mensaje, entradas=entradas, oficina=oficina)
+    if "user" in session:
+        try:
+            mensaje = None
+            entradas = Entradas.objects()
+            oficina = Oficina.objects()
+        except Exception as error:
+            mensaje = str(error)
+        return render_template("ListarEntradasS.html", mensaje=mensaje, entradas=entradas, oficina=oficina)
+    else:
+        mensaje = "Debe ingresar primero"
+        return render_template("iniciarSesion.html", mensaje=mensaje)
 
-@app.route("/EntradaAgregarAsistente/", methods=['GET'])
+@app.route("/EntradaAgregarAsistente/", methods=["GET"])
 def getEntradasAgregarAsistente():
-    try:
-        mensaje=None 
-        entradas=Entradas.objects()
-        oficina=Oficina.objects()
-    except Exception as error:
-        mensaje=str(error)
-    return render_template("/AgregarEntradas.html", mensaje=mensaje, oficina=oficina, entradas=entradas)
+    if "user" in session:
+        try:
+            mensaje = None
+            entradas = Entradas.objects()
+            oficina = Oficina.objects()
+        except Exception as error:
+            mensaje = str(error)
+        return render_template("AgregarEntradas.html", mensaje=mensaje, oficina=oficina, entradas=entradas)
+    else:
+        mensaje = "Debe ingresar primero"
+        return render_template("iniciarSesion.html", mensaje=mensaje)
 
 @app.route("/editarEntradaAsistente/<id>", methods=["GET"])
 def editarEntrada(id):
-    try:
-        entrada = Entradas.objects(id=id).first()
-        oficina = Oficina.objects()
-        return render_template("EditarEntradas.html", entrada=entrada, oficina=oficina)
-    
-    except Exception as error:
-        return str(error)
+    if "user" in session:
+        try:
+            entrada = Entradas.objects(id=id).first()
+            oficina = Oficina.objects()
+            return render_template("EditarEntradas.html", entrada=entrada, oficina=oficina)
+        except Exception as error:
+            return str(error)
+    else:
+        mensaje = "Debe ingresar primero"
+        return render_template("iniciarSesion.html", mensaje=mensaje)
+
 

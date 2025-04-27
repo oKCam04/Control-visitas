@@ -2,7 +2,15 @@
 
 {% block contenido %}
     <div class="w-25" style="margin: 0 auto">
-        <form id="frmUsuario" class="was-validated">
+        {% if get_flashed_messages() %}
+            {% for mensaje in get_flashed_messages() %}
+                <script>
+                    Swal.fire("Registro", "{{ mensaje }}", "info");
+                </script>
+            {% endfor %}
+        {% endif %}
+
+        <form id="frmUsuario" method="POST" action="/registrarUser/" class="was-validated">
             <br><br>
             <div>
                 <h3 class="text-center fw-bold bg-dark text-white" style="font-size:2lvw">
@@ -22,7 +30,12 @@
 
             <div class="mb-3">
                 <label class="fw-bold" for="txtOficina">Oficina:</label>
-                <input type="text" name="txtOficina" id="txtOficina" class="form-control" required>
+                <select name="txtOficina" id="txtOficina" class="form-select" required>
+                    <option value="" selected>Seleccione una oficina</option>
+                    {% for o in oficina %}
+                        <option value="{{ o.id }}">{{ o.nombreOficina }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
             <div class="mb-3">
@@ -33,19 +46,8 @@
                     <option value="Administrador">Administrador</option>
                 </select>
             </div>
-
-            <div class="mb-3">
-                <label class="fw-bold" for="txtUsuario">Usuario:</label>
-                <input type="text" name="txtUsuario" id="txtUsuario" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="fw-bold" for="txtContrasena">Contraseña:</label>
-                <input type="password" name="txtContrasena" id="txtContrasena" class="form-control" required>
-            </div>
-
             <div>
-                <button type="button" class="btn btn-dark" >Registrar</button>
+                <button type="submit" class="btn btn-dark">Registrar</button>
                 <a href="/"><button type="button" class="btn btn-secondary">Cancelar</button></a>
             </div>
         </form>
